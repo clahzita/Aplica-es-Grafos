@@ -1,0 +1,22 @@
+/**
+ * CriacaoGrafo, 18/10/2017
+ */
+package br.imd.grafos.elementos;
+
+/**
+ * Criação de um grafo a partir da estrtura de Vertice e Grafo.
+ * @version 1.0
+ * @author clarissa
+ *
+ */
+public class CriacaoGrafo {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

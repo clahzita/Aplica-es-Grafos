@@ -1,0 +1,21 @@
+/**
+ * 
+ */
+package br.imd.grafos.elementos;
+
+import java.util.List;
+
+/**
+ * Representação de aresta do vértice
+ * @version 1.0
+ * @author clarissa
+ *
+ */
+public class Aresta {
+	private Vertice origem;
+	private Vertice destino;
+	private int peso;
+	
+	
+	
+}

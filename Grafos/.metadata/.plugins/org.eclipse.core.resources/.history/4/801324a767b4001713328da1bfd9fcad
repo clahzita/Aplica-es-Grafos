@@ -1,0 +1,14 @@
+/**
+ * 
+ */
+package br.imd.grafos.elementos;
+
+/**
+ * Representação de aresta do vértice
+ * @version 1.0
+ * @author clarissa
+ *
+ */
+public class Aresta {
+
+}

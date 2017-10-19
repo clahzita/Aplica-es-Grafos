@@ -1,0 +1,36 @@
+/**
+ * 
+ */
+package br.imd.grafos.elementos;
+
+/**
+ * Representação dos nodos/vértices de um grafo
+ * 
+ * @author clarissa
+ *
+ */
+public class Vertice {
+	private Vertice pai;
+	private int grau;
+	
+	
+	
+	public int getGrau() {
+		return grau;
+	}
+	
+	public void setGrau(int grau) {
+		this.grau = grau;
+	}
+
+	public Vertice getPai() {
+		return pai;
+	}
+	
+	public void setPai(Vertice pai) {
+		this.pai = pai;
+	}
+	
+	
+
+}

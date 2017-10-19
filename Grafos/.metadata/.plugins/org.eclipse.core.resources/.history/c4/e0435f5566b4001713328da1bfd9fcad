@@ -1,0 +1,34 @@
+/**
+ * 
+ */
+package br.imd.grafos.elementos;
+
+/**
+ * @author clarissa
+ *
+ */
+public class Vertice {
+	private Vertice pai;
+	private Vertice grau;
+	
+	
+	
+	public int getGrau() {
+		return grau;
+	}
+	
+	public void setGrau(Vertice grau) {
+		this.grau = grau;
+	}
+
+	public Vertice getPai() {
+		return pai;
+	}
+	
+	public void setPai(Vertice pai) {
+		this.pai = pai;
+	}
+	
+	
+
+}

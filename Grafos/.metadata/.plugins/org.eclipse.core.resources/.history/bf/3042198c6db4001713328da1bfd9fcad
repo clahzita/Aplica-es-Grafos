@@ -1,0 +1,20 @@
+/**
+ * 
+ */
+package br.imd.grafos.elementos;
+
+/**
+ * @author clarissa
+ *
+ */
+public class CriacaoGrafo {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

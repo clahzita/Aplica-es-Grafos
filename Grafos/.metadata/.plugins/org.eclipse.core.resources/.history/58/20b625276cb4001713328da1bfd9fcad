@@ -1,0 +1,25 @@
+/**
+ * Grafo, 18/10/2017
+ * Todos os direitos reservados para Clarissa Alves Soares. 
+ */
+
+package br.imd.grafos.elementos;
+
+import java.util.List;
+
+/**
+ * Representação dos nde um grafo usando lista de adjacencias
+ * @version 1.0
+ * @author clarissa
+ *
+ */
+public class Grafo {
+	List<Vertice> vertices;
+	
+	private void addVertice(Vertice novo) {
+		vertices.add(novo);
+
+	}
+	
+	
+}
