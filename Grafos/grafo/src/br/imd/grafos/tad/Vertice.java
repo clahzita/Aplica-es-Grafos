@@ -25,18 +25,18 @@ public class Vertice {
 	private List<Vertice> adj;
 	
 	public Vertice(char id){
-		this.setId(id);
+		this.setId( Character.toLowerCase(id));
 		this.grau = Integer.MAX_VALUE;
 		this.cor = BRANCO;
-		this.pai = null;
+		this.setPai(null);
 		this.adj = new ArrayList<Vertice>();		
 	}
 	
 	public Vertice(char id, int grau) {
-		this.setId(id);
+		this.setId(Character.toLowerCase(id));
 		this.grau = grau;
 		this.cor = BRANCO;
-		this.pai = null;;
+		this.setPai(null);;
 		this.adj = new ArrayList<Vertice>();
 	}
 
@@ -48,7 +48,7 @@ public class Vertice {
 
 
 	public void setId(char id) {
-		this.id = id;
+		this.id = Character.toLowerCase(id);
 	}
 
 
@@ -69,6 +69,25 @@ public class Vertice {
 	public void setCor(int cor) {
 		this.cor = cor;
 	}
+	
+	public String getCorToString(){
+		if(this.cor == BRANCO){
+			return "branco";
+		}else if (this.cor == PRETO) {
+			return "preto";	
+		}else{
+			return "cinza";
+		}
+		
+	}
+
+	public Vertice getPai() {
+		return pai;
+	}
+
+	public void setPai(Vertice pai) {
+		this.pai = pai;
+	}
 
 	public List<Vertice> getAdj() {
 		return adj;
@@ -77,5 +96,18 @@ public class Vertice {
 	public void setAdj(List<Vertice> adj) {
 		this.adj = adj;
 	}
+	
+	public void adicionarAdjacente(Vertice novo){
+		this.getAdj().add(novo);
+	}
+	
+	public void removerAdjacente(Vertice vertice){
+		this.getAdj().remove(vertice);
+	}
+	
+	public boolean temAdjacente(Vertice vertice){
+		return this.getAdj().contains(vertice);
+	}
+	
 	
 }

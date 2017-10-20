@@ -12,15 +12,44 @@ package br.imd.grafos.tad;
 public class CriacaoGrafo {
 
 	public static void main(String[] args) {
-		Vertice a = new Vertice('a');
-		Vertice b = new Vertice('b');
-			
-		Grafo grafo = new Grafo();
-		grafo.adicionarVertice(a);
-		grafo.adicionarVertice(b);
-		grafo.adicionarAresta(a, b);
-				
-		grafo.imprimirGrafo();
+		Vertice r = new Vertice('r');
+		Vertice s = new Vertice('s');
+		Vertice t = new Vertice('t');
+		Vertice u = new Vertice('u');
+		Vertice v = new Vertice('v');
+		Vertice w = new Vertice('w');
+		Vertice x = new Vertice('x');
+		Vertice y = new Vertice('y');
+		
+		Grafo grafoDirigido = new Grafo(true);
+		
+		grafoDirigido.adicionarVertice(r);
+		grafoDirigido.adicionarVertice(s);
+		grafoDirigido.adicionarVertice(t);
+		grafoDirigido.adicionarVertice(u);
+		grafoDirigido.adicionarVertice(v);
+		grafoDirigido.adicionarVertice(w);
+		grafoDirigido.adicionarVertice(x);
+		grafoDirigido.adicionarVertice(y);
+		
+		grafoDirigido.adicionarAresta(v, r);
+		grafoDirigido.adicionarAresta(r, s);		
+		grafoDirigido.adicionarAresta(s, w);
+		grafoDirigido.adicionarAresta(w, t);
+		grafoDirigido.adicionarAresta(w, x);
+		grafoDirigido.adicionarAresta(t, u);
+		grafoDirigido.adicionarAresta(x, u);
+		grafoDirigido.adicionarAresta(x, y);
+		grafoDirigido.adicionarAresta(t, x);
+		grafoDirigido.adicionarAresta(u, y);
+		
+		grafoDirigido.imprimirGrafo();
+		
+		grafoDirigido.buscaEmLargura(s);
+		grafoDirigido.imprimirCorGrafo();
+		grafoDirigido.imprimirGrauGrafo();
+		
+		
 	}
 
 }

@@ -1,0 +1,32 @@
+/**
+ * CriacaoGrafo, 18/10/2017
+ */
+package br.imd.grafos.tad;
+
+/**
+ * Criação de um grafo a partir da estrtura de Vertice e Grafo.
+ * @version 1.0
+ * @author clarissa
+ *
+ */
+public class CriacaoGrafo {
+
+	public static void main(String[] args) {
+		Vertice r = new Vertice('r');
+		Vertice v = new Vertice('v');
+		Vertice s = new Vertice('s');
+		Vertice w = new Vertice('w');
+		Vertice t = new Vertice('t');
+		Vertice u = new Vertice('u');
+		Vertice x = new Vertice('x');
+		Vertice y = new Vertice('y');
+			
+		Grafo grafo = new Grafo();
+		grafo.adicionarVertice(a);
+		grafo.adicionarVertice(b);
+		grafo.adicionarAresta(a, b);
+				
+		grafo.imprimirGrafo();
+	}
+
+}

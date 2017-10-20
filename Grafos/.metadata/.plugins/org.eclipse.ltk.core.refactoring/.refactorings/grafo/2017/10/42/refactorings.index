@@ -6,3 +6,4 @@
 1508377940282	Rename package 'br.imd.grafos.elementos'
 1508378246470	Rename type 'exemplo'
 1508378384559	Encapsulate field 'id'
+1508433922023	Encapsulate field 'pai'

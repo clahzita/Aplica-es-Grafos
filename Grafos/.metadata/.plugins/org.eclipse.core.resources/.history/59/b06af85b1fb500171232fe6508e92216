@@ -1,0 +1,86 @@
+/**
+ * Grafo, 18/10/2017
+ * Todos os direitos reservados para Clarissa Alves Soares. 
+ */
+
+package br.imd.grafos.tad;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+/**
+ * Representação dos nde um grafo usando lista de adjacencias
+ * @version 1.0
+ * @author clarissa
+ *
+ */
+public class Grafo {
+	public static final int BRANCO = 0;
+	public static final int CINZA = 1;
+	public static final int PRETO = 2;
+	
+	List<Vertice> vertices;
+	
+	public Grafo() {
+		this.vertices = new ArrayList<Vertice>();
+	}
+	
+	public void adicionarVertice(Vertice novo) {
+		vertices.add(novo);		
+	}
+	
+	public void removerVertice(Vertice vertice) {
+		vertices.remove(vertice);		
+	}
+	
+	public void adicionarAresta(Vertice origem, Vertice destino){
+		origem.getAdj().add(destino);		
+	}
+	
+	public void removerAresta(Vertice origem, Vertice destino){
+		origem.getAdj().remove(destino);		
+	}
+	
+	public void imprimirGrafo(){
+		for (Vertice vertice : vertices) {
+			System.out.print(vertice.getId()+"-> ");
+			for (Vertice adjacente : vertice.getAdj()) {
+				System.out.println(adjacente.getId()+", ");				
+			}			
+		}
+	}
+	
+	private void inicializaVertices(){
+		for (Vertice vertice : vertices) {
+			vertice.setCor(BRANCO);
+			vertice.setGrau(Integer.MAX_VALUE);
+			vertice.setPai(null);			
+		}
+		
+	}
+	
+	public boolean buscaEmLargura(Vertice fonte){
+
+		//Pre-processamento
+		inicializaVertices();
+		
+		if(fonte == null){
+			return false;
+		}
+		fonte.setCor(CINZA);
+		fonte.setGrau(0);
+		Queue<Vertice> fila = new LinkedList<Vertice>();
+		fila.add(fonte);
+		Vertice u;
+		
+		//Processamento;
+		while (fila.isEmpty()) {
+			u = fila.remove();
+			
+		}
+		
+		return true;
+	}
+}
