@@ -21,34 +21,57 @@ public class CriacaoGrafo {
 		Vertice x = new Vertice('x');
 		Vertice y = new Vertice('y');
 		
-		Grafo grafoDirigido = new Grafo(true);
+		Grafo grafoNaoDirigido = new Grafo(false);
 		
-		grafoDirigido.adicionarVertice(r);
-		grafoDirigido.adicionarVertice(s);
-		grafoDirigido.adicionarVertice(t);
+		grafoNaoDirigido.adicionarVertice(r);
+		grafoNaoDirigido.adicionarVertice(s);
+		grafoNaoDirigido.adicionarVertice(t);
+		grafoNaoDirigido.adicionarVertice(u);
+		grafoNaoDirigido.adicionarVertice(v);
+		grafoNaoDirigido.adicionarVertice(w);
+		grafoNaoDirigido.adicionarVertice(x);
+		grafoNaoDirigido.adicionarVertice(y);
+		
+		/*grafoNaoDirigido.adicionarAresta(v, r);
+		grafoNaoDirigido.adicionarAresta(r, s);		
+		grafoNaoDirigido.adicionarAresta(s, w);
+		grafoNaoDirigido.adicionarAresta(w, t);
+		grafoNaoDirigido.adicionarAresta(w, x);
+		grafoNaoDirigido.adicionarAresta(t, u);
+		grafoNaoDirigido.adicionarAresta(x, u);
+		grafoNaoDirigido.adicionarAresta(x, y);
+		grafoNaoDirigido.adicionarAresta(t, x);
+		grafoNaoDirigido.adicionarAresta(u, y);*/
+		
+		grafoNaoDirigido.imprimirGrafo();
+		
+		grafoNaoDirigido.buscaEmLargura(s);
+		grafoNaoDirigido.imprimirCoresGrafo();
+		grafoNaoDirigido.imprimirDistanciasGrafo();
+		
+		Grafo grafoDirigido = new Grafo(true);
+		Vertice z = new Vertice('Z');
+		
 		grafoDirigido.adicionarVertice(u);
 		grafoDirigido.adicionarVertice(v);
 		grafoDirigido.adicionarVertice(w);
 		grafoDirigido.adicionarVertice(x);
 		grafoDirigido.adicionarVertice(y);
+		grafoDirigido.adicionarVertice(z);
 		
-		grafoDirigido.adicionarAresta(v, r);
-		grafoDirigido.adicionarAresta(r, s);		
-		grafoDirigido.adicionarAresta(s, w);
-		grafoDirigido.adicionarAresta(w, t);
-		grafoDirigido.adicionarAresta(w, x);
-		grafoDirigido.adicionarAresta(t, u);
-		grafoDirigido.adicionarAresta(x, u);
-		grafoDirigido.adicionarAresta(x, y);
-		grafoDirigido.adicionarAresta(t, x);
-		grafoDirigido.adicionarAresta(u, y);
+		grafoDirigido.adicionarAresta(u, v);
+		grafoDirigido.adicionarAresta(u, x);
+		grafoDirigido.adicionarAresta(x, v);
+		grafoDirigido.adicionarAresta(v, y);
+		grafoDirigido.adicionarAresta(y, x);
+		grafoDirigido.adicionarAresta(w, y);
+		grafoDirigido.adicionarAresta(w, z);
+		grafoDirigido.adicionarAresta(z, z);
 		
 		grafoDirigido.imprimirGrafo();
 		
-		grafoDirigido.buscaEmLargura(s);
-		grafoDirigido.imprimirCorGrafo();
-		grafoDirigido.imprimirGrauGrafo();
-		
+		grafoDirigido.buscaEmProfundidade(u);
+		grafoDirigido.imprimirTemposGrafo();	
 		
 	}
 

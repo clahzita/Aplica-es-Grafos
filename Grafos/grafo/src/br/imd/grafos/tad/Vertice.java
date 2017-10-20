@@ -19,14 +19,15 @@ public class Vertice {
 	public static final int PRETO = 2;
 	
 	private char id;
-	private int grau;
+	private int distancia;
+	private int tempoFim;
 	private int cor;
 	private Vertice pai;
 	private List<Vertice> adj;
 	
 	public Vertice(char id){
 		this.setId( Character.toLowerCase(id));
-		this.grau = Integer.MAX_VALUE;
+		this.distancia = Integer.MAX_VALUE;
 		this.cor = BRANCO;
 		this.setPai(null);
 		this.adj = new ArrayList<Vertice>();		
@@ -34,7 +35,7 @@ public class Vertice {
 	
 	public Vertice(char id, int grau) {
 		this.setId(Character.toLowerCase(id));
-		this.grau = grau;
+		this.distancia = grau;
 		this.cor = BRANCO;
 		this.setPai(null);;
 		this.adj = new ArrayList<Vertice>();
@@ -54,12 +55,20 @@ public class Vertice {
 
 	
 	
-	public int getGrau() {
-		return grau;
+	public int getDistancia() {
+		return distancia;
 	}
 	
-	public void setGrau(int grau) {
-		this.grau = grau;
+	public void setDistancia(int grau) {
+		this.distancia = grau;
+	}
+
+	public int getTempoFim() {
+		return tempoFim;
+	}
+
+	public void setTempoFim(int tempoFim) {
+		this.tempoFim = tempoFim;
 	}
 
 	public int getCor() {
