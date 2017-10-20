@@ -1,0 +1,8 @@
+package br.imd.grafos.main;
+
+public class VerificarOrdenacaoTopologica {
+	public static void main(String[] args) {
+		
+	}
+
+}

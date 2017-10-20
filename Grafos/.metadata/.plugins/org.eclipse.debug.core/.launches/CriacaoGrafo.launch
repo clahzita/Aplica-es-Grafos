@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-<listEntry value="/grafo/src/br/imd/grafos/tad/CriacaoGrafo.java"/>
+<listEntry value="/grafo/src/br/imd/grafos/main/CriacaoGrafo.java"/>
 </listAttribute>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
 <listEntry value="1"/>
 </listAttribute>
-<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="br.imd.grafos.tad.CriacaoGrafo"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="br.imd.grafos.main.CriacaoGrafo"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="grafo"/>
 </launchConfiguration>

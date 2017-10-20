@@ -1,0 +1,22 @@
+package br.imd.grafos.main;
+
+import br.imd.grafos.tad.Vertice;
+
+public class VerificarOrdenacaoTopologica {
+	public static void main(String[] args) {
+		Vertice cueca = new Vertice('cueca');
+		Vertice calcas = new Vertice('calças');
+		Vertice cinto = new Vertice('cinto');
+		Vertice camisa = new Vertice('camisa');
+		Vertice gravata = new Vertice('gravata');
+		Vertice paleto = new Vertice('paleto');
+		Vertice meias = new Vertice('meias');
+		Vertice sapatos = new Vertice('sapatos');
+		Vertice relogio = new Vertice('relogio');
+		
+		
+		
+	}
+
+}
+

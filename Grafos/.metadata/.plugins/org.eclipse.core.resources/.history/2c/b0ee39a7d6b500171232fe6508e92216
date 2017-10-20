@@ -1,0 +1,40 @@
+package br.imd.grafos.main;
+
+import br.imd.grafos.tad.Grafo;
+import br.imd.grafos.tad.Vertice;
+
+public class VerificarOrdenacaoTopologica {
+	public static void main(String[] args) {
+		Vertice cueca = new Vertice('cueca');
+		Vertice calcas = new Vertice('calças');
+		Vertice cinto = new Vertice('cinto');
+		Vertice camisa = new Vertice('camisa');
+		Vertice gravata = new Vertice('gravata');
+		Vertice paleto = new Vertice('paleto');
+		Vertice meias = new Vertice('meias');
+		Vertice sapatos = new Vertice('sapatos');
+		Vertice relogio = new Vertice('relogio');
+		
+		Grafo grafoRoupas = new Grafo(true);
+		
+		grafoRoupas.adicionarAresta(camisa, gravata);
+		grafoRoupas.adicionarAresta(gravata,paleto);		
+		grafoRoupas.adicionarAresta(camisa, cinto);
+		grafoRoupas.adicionarAresta(cinto, paleto);
+		grafoRoupas.adicionarAresta(calcas, cinto);
+		grafoRoupas.adicionarAresta(cueca, calcas);
+		grafoRoupas.adicionarAresta(cueca, sapatos);
+		grafoRoupas.adicionarAresta(calcas, sapatos);
+		grafoRoupas.adicionarAresta(meias, sapatos);
+		
+		Stack<vertice> ordenacaoTopologica = grafoRoupas.ordenacaoTopologica(camisa);
+		
+		
+		
+		
+		
+		
+	}
+
+}
+
