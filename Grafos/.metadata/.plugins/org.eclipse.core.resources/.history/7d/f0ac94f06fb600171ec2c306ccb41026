@@ -1,0 +1,40 @@
+package br.imd.grafos.main;
+
+import javax.swing.GrayFilter;
+
+import br.imd.grafos.tad.Grafo;
+import br.imd.grafos.tad.Vertice;
+
+public class CaminhosMinimos {
+
+	public static void main(String[] args) {
+		Vertice s = new Vertice('s');
+		Vertice t = new Vertice('t');
+		Vertice x = new Vertice('x');
+		Vertice y = new Vertice('y');
+		Vertice z = new Vertice('z');
+		
+		Grafo grafoDirigido = new Grafo(true);
+		
+		grafoDirigido.adicionarVertice(s);
+		grafoDirigido.adicionarVertice(t);
+		grafoDirigido.adicionarVertice(x);
+		grafoDirigido.adicionarVertice(y);
+		grafoDirigido.adicionarVertice(z);
+		
+		grafoDirigido.adicionarAresta(s, t, 6);
+		grafoDirigido.adicionarAresta(s, y, 7);
+		grafoDirigido.adicionarAresta(t, x, 5);
+		grafoDirigido.adicionarAresta(x, t, -2);
+		grafoDirigido.adicionarAresta(t, y, 8);
+		grafoDirigido.adicionarAresta(t, z, -4);
+		grafoDirigido.adicionarAresta(y, x, -3);
+		grafoDirigido.adicionarAresta(y, z, 9);
+		grafoDirigido.adicionarAresta(z, x, 7);
+		grafoDirigido.adicionarAresta(z, s, 2);
+		
+		grafoDirigido.imprimirGrafo();
+		
+	}
+
+}

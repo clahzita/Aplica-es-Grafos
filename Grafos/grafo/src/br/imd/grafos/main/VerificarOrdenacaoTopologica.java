@@ -1,7 +1,5 @@
 package br.imd.grafos.main;
 
-import java.util.Stack;
-
 import br.imd.grafos.tad.Grafo;
 import br.imd.grafos.tad.Vertice;
 

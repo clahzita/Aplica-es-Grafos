@@ -1,0 +1,26 @@
+package br.imd.grafos.main;
+
+import br.imd.grafos.tad.Grafo;
+import br.imd.grafos.tad.Vertice;
+
+public class CaminhosMinimos {
+
+	public static void main(String[] args) {
+		Vertice s = new Vertice('s');
+		Vertice t = new Vertice('t');
+		Vertice x = new Vertice('x');
+		Vertice y = new Vertice('y');
+		Vertice z = new Vertice('z');
+		
+		Grafo grafoNaoDirigido = new Grafo(false);
+		
+		grafoNaoDirigido.adicionarVertice(r);
+		grafoNaoDirigido.adicionarVertice(s);
+		grafoNaoDirigido.adicionarVertice(t);
+		grafoNaoDirigido.adicionarVertice(u);
+		grafoNaoDirigido.adicionarVertice(v);
+		grafoNaoDirigido.adicionarVertice(w);
+		
+	}
+
+}

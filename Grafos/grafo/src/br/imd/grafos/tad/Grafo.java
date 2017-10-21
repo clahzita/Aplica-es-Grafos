@@ -8,7 +8,9 @@ package br.imd.grafos.tad;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
+import java.util.Set;
 import java.util.Stack;
 
 /**
@@ -53,9 +55,16 @@ public class Grafo {
 
 	public void adicionarAresta(Vertice origem, Vertice destino) {
 		if (!dirigido) {
-			destino.adicionarAdjacente(origem);
+			destino.adicionarAdjacente(origem,1);
 		}
-		origem.adicionarAdjacente(destino);
+		origem.adicionarAdjacente(destino,1);
+	}
+	
+	public void adicionarAresta(Vertice origem, Vertice destino, int peso) {
+		if (!dirigido) {
+			destino.adicionarAdjacente(origem,peso);
+		}
+		origem.adicionarAdjacente(destino,peso);
 	}
 
 	public void removerAresta(Vertice origem, Vertice destino) {
@@ -69,7 +78,7 @@ public class Grafo {
 	public void imprimirGrafo() {
 		for (Vertice vertice : vertices) {
 			System.out.print(vertice.getId() + " -> ");
-			for (Vertice adjacente : vertice.getAdj()) {
+			for (Vertice adjacente : vertice.getAdj().keySet()) {
 				System.out.print(adjacente.getId() + ", ");
 
 			}
@@ -83,8 +92,16 @@ public class Grafo {
 	}
 
 	public void imprimirDistanciasGrafo() {
-		for (Vertice vertice : vertices)
-			System.out.println(vertice.getId() + " -> " + vertice.getDistancia());
+		for (Vertice vertice : vertices){
+			System.out.print(vertice.getId() + " -> ");
+			if(vertice.getDistancia()== Integer.MAX_VALUE){
+				System.out.println("inf");
+			}else{
+				System.out.println(vertice.getDistancia());
+				
+			}
+		}
+			
 	}
 
 	public void imprimirTemposGrafo() {
@@ -121,9 +138,9 @@ public class Grafo {
 		// Processamento
 		while (!fila.isEmpty()) {
 			u = fila.remove();
-			List<Vertice> adj = u.getAdj();
-			for (int i = 0; i < adj.size(); i++) {
-				Vertice v = adj.get(i);
+			Set<Vertice> adj = u.getAdj().keySet();
+			
+			for (Vertice v : adj) {
 				if (v.getCor() == BRANCO) {
 					v.setCor(CINZA);
 					v.setDistancia(u.getDistancia() + 1);
@@ -178,7 +195,7 @@ public class Grafo {
 		u.setDistancia(tempoBusca);
 		u.setCor(CINZA);
 		// explorar aresta (u,v)
-		for (Vertice v : u.getAdj()) {
+		for (Vertice v : u.getAdj().keySet()) {
 			if (v.getCor() == BRANCO) {
 				v.setPai(u);
 				buscaEmProfundidadeVisit(v);
@@ -225,7 +242,7 @@ public class Grafo {
 		u.setCor(CINZA);
 		
 		// Explorar todos os vertices adjacentes desse vertice
-		for (Vertice v : u.getAdj()) {
+		for (Vertice v : u.getAdj().keySet()) {
 			if (v.getCor() == BRANCO) {
 				v.setPai(u);
 				ordenacaoTopologicaVisit(v, ordemTopologica);
@@ -239,4 +256,52 @@ public class Grafo {
 
 	}
 
+	//Initialize-Single-Source(G, s)
+	private void inicializaFonteUnica(Vertice fonte){
+		for (Vertice vertice : vertices) {
+			vertice.setDistancia(Integer.MAX_VALUE);
+			vertice.setPai(null);
+		}
+		fonte.setDistancia(0);
+	}
+	
+	//Relax(u,v,w)
+	private void relaxamento(Vertice u, Vertice v){
+		int peso = u.getAdj().get(v);
+		if(v.getDistancia()>(u.getDistancia()+peso)){
+			v.setDistancia(u.getDistancia()+peso);
+			v.setPai(u);
+		}			
+	}
+	
+	//Bellman-Ford
+	public boolean caminhoMinimoFonteUnica(Vertice fonte){
+		this.inicializaFonteUnica(fonte);
+		System.out.println(vertices.size());
+		for (int i = 0; i < vertices.size(); i++) {
+			
+			System.out.println("Passagem "+i+":");
+			this.imprimirDistanciasGrafo();
+			
+			for (Vertice u: vertices){
+				for (Vertice v : u.getAdj().keySet()) {
+					this.relaxamento(u, v);
+				}			
+			}
+		}		
+		
+		for (Vertice u: vertices){
+			for (Vertice v : u.getAdj().keySet()) {
+				int peso = u.getAdj().get(v);
+				if(v.getDistancia()>(u.getDistancia()+peso)){
+					return false;
+				}			
+			}
+		}
+		return true;
+		
+		
+	}
+	
+	
 }

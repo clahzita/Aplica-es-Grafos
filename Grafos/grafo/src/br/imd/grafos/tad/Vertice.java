@@ -4,8 +4,8 @@
  */
 package br.imd.grafos.tad;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Representação dos nodos/vértices de um grafol
@@ -23,14 +23,14 @@ public class Vertice {
 	private int tempoFim;
 	private int cor;
 	private Vertice pai;
-	private List<Vertice> adj;
+	private Map<Vertice,Integer> adj;
 	
 	public Vertice(char id){
 		this.setId( Character.toLowerCase(id));
 		this.distancia = Integer.MAX_VALUE;
 		this.cor = BRANCO;
 		this.setPai(null);
-		this.adj = new ArrayList<Vertice>();		
+		this.adj = new HashMap<Vertice,Integer>();		
 	}
 	
 	public Vertice(char id, int grau) {
@@ -38,7 +38,7 @@ public class Vertice {
 		this.distancia = grau;
 		this.cor = BRANCO;
 		this.setPai(null);;
-		this.adj = new ArrayList<Vertice>();
+		this.adj = new HashMap<Vertice,Integer>();
 	}
 
 
@@ -98,16 +98,16 @@ public class Vertice {
 		this.pai = pai;
 	}
 
-	public List<Vertice> getAdj() {
+	public Map<Vertice, Integer> getAdj() {
 		return adj;
 	}
 
-	public void setAdj(List<Vertice> adj) {
+	public void setAdj(Map<Vertice, Integer> adj) {
 		this.adj = adj;
 	}
 	
-	public void adicionarAdjacente(Vertice novo){
-		this.getAdj().add(novo);
+	public void adicionarAdjacente(Vertice novo, int peso){
+		this.getAdj().put(novo, peso);
 	}
 	
 	public void removerAdjacente(Vertice vertice){
@@ -115,7 +115,7 @@ public class Vertice {
 	}
 	
 	public boolean temAdjacente(Vertice vertice){
-		return this.getAdj().contains(vertice);
+		return this.getAdj().containsKey(vertice);
 	}
 	
 	public void limparAdjacentes(){
