@@ -5,4 +5,7 @@
 <fullyQualifiedTypeName name="br.imd.grafos.elementos.Grafo"/>
 <fullyQualifiedTypeName name="br.imd.grafos.elementos.Vertice"/>
 <fullyQualifiedTypeName name="GrafoExemplo"/>
+<fullyQualifiedTypeName name="javax.swing.GrayFilter"/>
+<fullyQualifiedTypeName name="java.util.Scanner"/>
+<fullyQualifiedTypeName name="wormholes.Main.Vertice"/>
 </qualifiedTypeNameHistroy>
