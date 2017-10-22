@@ -1,0 +1,223 @@
+package pagehopping;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Main {
+	public class Vertice{
+		private int id;
+		private int distancia;
+		private Vertice pai;
+		private Map<Vertice,Integer> adj;
+		
+		public Vertice(int id){
+			this.setId(id);
+			this.setDistancia(Integer.MAX_VALUE);
+			this.setPai(null);
+			this.setAdj(new HashMap<Vertice,Integer>());		
+		}
+
+		public int getId() {
+			return id;
+		}
+
+		public void setId(int id) {
+			this.id = id;
+		}
+
+		public int getDistancia() {
+			return distancia;
+		}
+
+		public void setDistancia(int distancia) {
+			this.distancia = distancia;
+		}
+
+		public Vertice getPai() {
+			return pai;
+		}
+
+		public void setPai(Vertice pai) {
+			this.pai = pai;
+		}
+
+		public Map<Vertice,Integer> getAdj() {
+			return adj;
+		}
+
+		public void setAdj(Map<Vertice,Integer> adj) {
+			this.adj = adj;
+		}
+		
+		public void adicionarAdjacente(Vertice novo, int peso){
+			this.getAdj().put(novo, peso);
+		}
+		
+		public void removerAdjacente(Vertice vertice){
+			this.getAdj().remove(vertice);
+		}
+		
+		public void limparAdjacentes(){
+			this.getAdj().clear();
+		}
+		
+		
+	}
+	
+	public class Grafo{
+		private List<Vertice> vertices;
+		private boolean dirigido;
+
+		public Grafo(boolean dirigido) {
+			this.dirigido = dirigido;
+			this.vertices = new ArrayList<Vertice>();
+		}
+		
+		public void adicionarVertice(Vertice novo) {
+			// garante reutilização de vertices em grafos diferentes
+			novo.limparAdjacentes();
+			vertices.add(novo);
+		}
+		
+		public Vertice pegarVertice(int id){
+			for (Vertice vertice : vertices) {
+				if(vertice.getId() == id)
+					return vertice;				
+			}
+			return null;
+			
+		}
+		
+		public void adicionarAresta(int origemId, int destinoId, int peso) {
+			//tenta pegar o vestice no grafo
+			Vertice origem = this.pegarVertice(origemId);
+			c//caso nao tenha sido adicionado, cria e adiciona o vertice
+			if(origem == null){
+				origem = new Vertice(origemId);
+				this.adicionarVertice(origem);;
+			}
+			
+			Vertice destino = this.pegarVertice(destinoId);
+			if(destino == null){
+				destino = new Vertice(destinoId);
+				this.adicionarVertice(destino);
+			}
+			
+			if (!dirigido) {
+				destino.adicionarAdjacente(origem,peso);
+			}
+			origem.adicionarAdjacente(destino,peso);
+		}
+
+		
+		public void imprimirDistanciasGrafo() {
+			for (Vertice vertice : vertices){
+				System.out.print(vertice.getId() + " -> ");
+				if(vertice.getDistancia()== Integer.MAX_VALUE){
+					System.out.println("inf");
+				}else{
+					System.out.println(vertice.getDistancia());
+					
+				}
+			}
+				
+		}
+		
+		//Initialize-Single-Source(G, s)
+		private void inicializaFonteUnica(Vertice fonte){
+			for (Vertice vertice : vertices) {
+				vertice.setDistancia(Integer.MAX_VALUE);
+				vertice.setPai(null);
+			}
+			fonte.setDistancia(0);
+		}
+		
+		//Relax(u,v,w)
+		private void relaxamento(Vertice u, Vertice v){
+			int peso = u.getAdj().get(v);
+			if(v.getDistancia()>(u.getDistancia()+peso)){
+				v.setDistancia(u.getDistancia()+peso);
+				v.setPai(u);
+			}			
+		}
+		
+		//Bellman-Ford
+		public boolean caminhoMinimoFonteUnica(Vertice fonte){
+			this.inicializaFonteUnica(fonte);
+			
+			for (int i = 0; i < vertices.size(); i++) {
+				
+				for (Vertice u: vertices){
+					for (Vertice v : u.getAdj().keySet()) {
+						this.relaxamento(u, v);
+					}			
+				}
+			}		
+			
+			for (Vertice u: vertices){
+				for (Vertice v : u.getAdj().keySet()) {
+					int peso = u.getAdj().get(v);
+					if(v.getDistancia()>(u.getDistancia()+peso)){
+						return false;
+					}			
+				}
+			}
+			return true;
+			
+			
+		}
+
+	}
+	
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		Main obj = new Main();
+		
+		int numeroCasos = scanner.nextInt();
+		int numeroEstrelas, numeroTuneis, origem, destino, peso;
+		Vertice fonte = null;
+		
+		while(numeroCasos!=0){
+			//Pegar informações sobre caso
+			numeroEstrelas = scanner.nextInt();
+			numeroTuneis = scanner.nextInt();
+			
+			Grafo grafo = obj.new Grafo(true);
+			
+			//Criando os vertices do grafo de 0 a n-1 estrelas
+			for (int i = 0; i < numeroEstrelas; i++) {
+				Vertice novo = obj.new Vertice(i);
+				if(i==0){
+					fonte = novo;
+				}
+				grafo.adicionarVertice(novo);				
+			}
+			
+			//Criando arestas de acordo com informacoes dos wormholes
+			for (int i = 0; i < numeroTuneis; i++) {
+				
+				origem = scanner.nextInt();
+				destino = scanner.nextInt();
+				peso = scanner.nextInt();
+				
+				grafo.adicionarAresta(origem, destino, peso);
+				
+			}
+			
+			if(grafo.caminhoMinimoFonteUnica(fonte)){
+				System.out.println("not possible");
+			}else{
+				System.out.println("possible");
+			}
+			
+			numeroCasos--;
+		}         
+		
+
+	}
+
+}
+

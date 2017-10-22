@@ -1,0 +1,151 @@
+package pagehopping;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Main {
+	
+	
+	public class Grafo{
+		public static final int INF = Integer.MAX_VALUE;
+		public static final int MAX = 100;
+		private int[][] matrizDistancia;
+		
+
+		public Grafo(int linhas, int colunas) {
+			this.matrizDistancia = new int[linhas][colunas];
+			//inicioaliza a matriz com 0 nos encontros do proprios vertices e 
+			// infinito nos demais
+			for (int i = 0; i < matrizDistancia.length; i++) {
+				for (int j = 0; j < matrizDistancia.length; j++) {
+					if(i==j){
+						matrizDistancia[i][j] = 0;
+					}
+					else{
+						matrizDistancia[i][j]=INF;
+					}
+				}
+			}
+		}
+						
+		public void adicionarAresta(int origemId, int destinoId, int peso) {
+			matrizDistancia[origemId][destinoId] = peso;
+			
+		}
+		
+		public void removerAresta(int origemId, int destinoId) {
+			matrizDistancia[origemId][destinoId] = INF;
+			
+		}
+
+		
+		public void imprimirGrafo() {
+			for (int i = 0; i < matrizDistancia.length; i++) {
+				for (int j = 0; j < matrizDistancia.length; j++) {
+					if (matrizDistancia[i][j]==INF)
+	                    System.out.print("INF ");
+	                else
+	                  System.out.print(matrizDistancia[i][j]+" ");
+						
+				}
+				System.out.println();
+			}
+				
+		}		
+		
+		//Floyd-Warshall
+		public int[][] caminhosMinimosTodosPares(){
+			//n = W.linhas
+			int n = matrizDistancia.length;
+		
+			//D(0)=W
+			int[][] dist = new int[n][n];
+			for (int i = 0; i < n; i++){
+	            for (int j = 0; j < n; j++){
+	                dist[i][j] = matrizDistancia[i][j];
+	            }
+			}
+			
+			for (int k = 0; k < n; k++) {				
+				for(int i = 0; i < n; i++){
+					for (int j = 0; j < n; j++) {
+						dist[i][j] = Integer.min(dist[i][j], dist[i][k] + dist[k][j]);
+					}
+				}					
+			}
+			
+			return dist;
+			
+			
+		}
+
+	}
+	
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in); 
+		Main obj = new Main();
+		boolean ultimoTeste = false;
+		boolean fimTeste = false;
+		
+		
+		while(!ultimoTeste){
+			
+			while(!fimTeste){
+				Grafo grafo = obj.new Grafo(MAX,MAX);
+				origem = scanner.nextInt();
+				destino = scanner.nextInt();
+				
+				grafo.adicionarAresta(origem, destino, 1);
+			}
+			
+			
+		}
+		
+		int numeroCasos = scanner.nextInt();
+		int numeroEstrelas, numeroTuneis, origem, destino, peso;
+		Vertice fonte = null;
+		
+		while(numeroCasos!=0){
+			//Pegar informações sobre caso
+			numeroEstrelas = scanner.nextInt();
+			numeroTuneis = scanner.nextInt();
+			
+			Grafo grafo = obj.new Grafo(true);
+			
+			//Criando os vertices do grafo de 0 a n-1 estrelas
+			for (int i = 0; i < numeroEstrelas; i++) {
+				Vertice novo = obj.new Vertice(i);
+				if(i==0){
+					fonte = novo;
+				}
+				grafo.adicionarVertice(novo);				
+			}
+			
+			//Criando arestas de acordo com informacoes dos wormholes
+			for (int i = 0; i < numeroTuneis; i++) {
+				
+				origem = scanner.nextInt();
+				destino = scanner.nextInt();
+				peso = scanner.nextInt();
+				
+				grafo.adicionarAresta(origem, destino, peso);
+				
+			}
+			
+			if(grafo.caminhoMinimoFonteUnica(fonte)){
+				System.out.println("not possible");
+			}else{
+				System.out.println("possible");
+			}
+			
+			numeroCasos--;
+		}         
+		
+
+	}
+
+}
+

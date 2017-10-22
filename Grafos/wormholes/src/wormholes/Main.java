@@ -1,5 +1,7 @@
 package wormholes;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -169,9 +171,18 @@ public class Main {
 
 	}
 	
-	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		Main obj = new Main();
+	@SuppressWarnings("resource")
+	public static void main(String[] args) throws FileNotFoundException {
+		
+		
+		Scanner scanner = null; 
+		if(args.length == 0){
+				scanner = new Scanner(System.in);
+		}else {
+			scanner = new Scanner(new FileInputStream("wormholes.txt"));
+		}
+		
+		Main obj = new Main();		
 		
 		int numeroCasos = scanner.nextInt();
 		int numeroEstrelas, numeroTuneis, origem, destino, peso;
